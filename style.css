@@ -76,6 +76,7 @@ body {
 }
 
 #btn-prox-bandeira {
+    display: none;
     width: 200px;
     height: 30px;
     color: var(--cor-primaria);
