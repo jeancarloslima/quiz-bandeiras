@@ -6,6 +6,12 @@ alternativasItens.forEach((alternativa) => {
     alternativa.addEventListener("click", verificaResposta);
 });
 
+btnProxBandeira.addEventListener("click", () => {
+    btnProxBandeira.style.display = "none";
+
+    geraQuestao();
+})
+
 function verificaResposta() {
     btnProxBandeira.style.display = "block";
 };
