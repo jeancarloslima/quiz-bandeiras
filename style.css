@@ -48,6 +48,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 4rem;
+    margin-top: 4rem;
+}
+
+#imagem-bandeira {
+    width: 300px;
+    height: 200px;
 }
 
 #lista-alternativas {
