@@ -25,10 +25,11 @@ async function geraQuestao() {
         }
 
         const data = await response.json();
-        console.log(data[0].flags);
-
-        imagemBandeira.src = data[1].flags.png
-        imagemBandeira.alt = data[1].flags.alt
+        
+        const numeroAleatorioPais = Math.floor(Math.random() * 251);
+        
+        imagemBandeira.src = data[numeroAleatorioPais].flags.png
+        imagemBandeira.alt = data[numeroAleatorioPais].flags.alt
         
     } catch (error) {
         console.error("Algo deu errado!" + error)
