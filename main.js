@@ -18,6 +18,7 @@ btnProxBandeira.addEventListener("click", () => {
     alternativasItens.forEach((alternativa) => {
         alternativa.style.pointerEvents = "all";
         alternativa.classList.remove("alternativa-correta");
+        alternativa.style.backgroundColor = "";
     });
 
     geraQuestao();
@@ -34,6 +35,11 @@ function verificaResposta(e) {
 
     alternativasItens.forEach((alternativa) => {
         alternativa.style.pointerEvents = "none";
+        alternativa.style.backgroundColor = "#DA2C38";
+
+        if (alternativa.classList.contains("alternativa-correta")) {
+            alternativa.style.backgroundColor = "#81B29A";
+        }
     });
 
     btnProxBandeira.style.display = "block";
