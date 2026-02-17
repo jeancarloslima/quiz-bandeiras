@@ -1,18 +1,41 @@
 const alternativasItens = document.querySelectorAll(".lista-alternativas__item");
 const btnProxBandeira = document.querySelector("#btn-prox-bandeira");
 const imagemBandeira = document.querySelector("#imagem-bandeira");
+const elementoNumeroAcertos = document.querySelector("#numero-acertos");
+const elementoNumeroErros = document.querySelector("#numero-erros");
+let acertos = 0;
+let erros = 0;
 
 alternativasItens.forEach((alternativa) => {
-    alternativa.addEventListener("click", verificaResposta);
+    alternativa.addEventListener("click", () => {
+        verificaResposta(alternativa);
+    });
 });
 
 btnProxBandeira.addEventListener("click", () => {
     btnProxBandeira.style.display = "none";
 
+    alternativasItens.forEach((alternativa) => {
+        alternativa.style.pointerEvents = "all";
+        alternativa.classList.remove("alternativa-correta");
+    });
+
     geraQuestao();
 })
 
-function verificaResposta() {
+function verificaResposta(e) {
+    if (e.classList.contains("alternativa-correta")) {
+        acertos++;
+        elementoNumeroAcertos.innerHTML = acertos;
+    } else {
+        erros++;
+        elementoNumeroErros.innerHTML = erros;
+    }
+
+    alternativasItens.forEach((alternativa) => {
+        alternativa.style.pointerEvents = "none";
+    });
+
     btnProxBandeira.style.display = "block";
 };
 
@@ -34,6 +57,7 @@ async function geraQuestao() {
         
         alternativasItens[numeroAleatorioAlternativa].innerHTML = data[numeroAleatorioPais].name.common;
         alternativasItens[numeroAleatorioAlternativa].classList.remove("nao-preenchida");
+        alternativasItens[numeroAleatorioAlternativa].classList.add("alternativa-correta");
 
         const alternativaNaoPreenchidas = document.querySelectorAll(".lista-alternativas__item.nao-preenchida");
 
@@ -45,6 +69,8 @@ async function geraQuestao() {
 
         alternativaNaoPreenchidas[0].innerHTML = data[numeroAleatorioPais + 1].name.common;
         alternativaNaoPreenchidas[1].innerHTML = data[numeroAleatorioPais - 1].name.common;
+
+        alternativasItens[numeroAleatorioAlternativa].classList.add("nao-preenchida");
         
     } catch (error) {
         console.error("Algo deu errado!" + error)
